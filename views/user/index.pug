@@ -1,0 +1,25 @@
+extends ../layouts/common
+block content
+                
+        h1 Search User
+        .d-flex.align-items-center
+            a.btn.btn-primary(href="/user/create") New User
+            form.ml-auto(action="/user/search", method="GET", class="d-flex")
+                input(type="text", name="q", value = que,class="form-control")
+                button(class="btn btn-primary") Search
+        h1 User List 
+        table.table
+            tr
+                 th Name
+                 th avatar
+                 th phone
+                 th Chi tiết
+               
+            each user in users
+                tr
+                    td=  user.name
+                    td
+                        img(src= user.avatar,width="150",height="100")
+                    td=  user.phone
+                    td 
+                        a(href="/user/" + user.id) view
