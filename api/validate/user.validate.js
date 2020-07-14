@@ -8,7 +8,7 @@ module.exports.userschema = Joi.object().keys({
     birthday: Joi.date().max('1-1-2004').iso(),
     age: Joi.number().integer().greater(10),
     //sex: Joi.string().valid('M', 'F', 'MALE', 'FEMALE').uppercase().required(),
-    name: Joi.string().regex(/^[a-zA-Z ]{1,}$/),
+    name: Joi.string(),
     password: Joi.string().min(7).alphanum().required(),
     avatar: Joi.string()
     //sex: Joi.any().valid('M', 'F', 'MALE', 'FEMALE').required()

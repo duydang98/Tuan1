@@ -3,6 +3,7 @@ var shortid = require('shortid');
 var User = require('../models/user.model');
 var cloudinary = require('../cloudinary');
 var fs = require('fs');
+var md5 = require('md5');
 module.exports.index = async function(req,res){
 
     var users = await User.find();
@@ -44,19 +45,25 @@ module.exports.postCreate = async function(req,res){
         urls.push(newPath)
         fs.unlinkSync(path)
       }
-
-      req.body.avatar = "image";
+      for(const url of urls){
+          if(url){
+           
+            req.body.avatar = url.url;
+          }
+          
+      }
+        req.body.password = md5(req.body.password);
         await User.create(req.body);
 
-      res.status(200).json({
-        message: 'images uploaded successfully',
-        data: urls,
-        user: req.body
-      })
+      // res.status(200).json({
+      //   message: 'images uploaded successfully',
+      //   //data: urls,
+      //   user: req.body
+      // })
   
  
     
-    //res.redirect('/user');
+    res.redirect('/user');
     
 };
 
@@ -65,6 +72,6 @@ module.exports.get = async function(req,res){
     // tim user theo id
     var user  = await User.find({_id: id1});
     res.render('user/view',{
-        user: user
+      user: user
     });
  };

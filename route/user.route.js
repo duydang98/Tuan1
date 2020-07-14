@@ -15,7 +15,8 @@ var router = express.Router();
 var upload = require('../multer');
 //require lowdb
 var controller = require('../controller/user.controller');
-var validation = require('../validation/user.validation');
+var validate = require('../api/validate/user.validate');
+
 
 
 router.get('/',controller.index);
@@ -33,7 +34,7 @@ router.get('/create',controller.create);
 
 router.post('/create',
     upload.array('avatar'),
-    //validation.postCreate,
+    validator.body(validate.userschema),
     controller.postCreate
     );
 //route params

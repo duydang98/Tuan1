@@ -14,6 +14,12 @@ block content
                     label(for="phone") Phone
                     input#phone.form-control(name="phone",type="text", value=value ? value.phone : "")
                 .form-group
+                    label(for="email") Email
+                    input#email.form-control(name="email",type="text", value=value ? value.email : "")
+                    .form-group
+                    label(for="password") Password
+                    input#password.form-control(name="password",type="password", value=value ? value.password : "")
+                .form-group
                     label(for="Avatar") Avatar
                     input#Avatar.form-control(name="avatar",type="file")
                 button(class="btn btn-primary")  Create
