@@ -4,6 +4,7 @@ var express = require('express');
 var app = new express();
 var db = require('./db.js');
 var port = 3000;
+
 var _ = require('underscore');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -31,12 +32,14 @@ var addToCart = require('./route/cart.route');
  app.use('/api/product',apiProductRoute);
  var apiUserRoute = require('./api/route/user.route');
  app.use('/api/user',apiUserRoute);
+
 //middleware check cookie
 var authMiddleware = require('./middleware/auth.middleware');
 var sessionMiddleware = require('./middleware/session.middleware');
 
 app.use(sessionMiddleware);
-app.use(express.static('public')); 
+
+app.use(express.static('./public')); 
 
 app.get('/',function(req,res){
     res.render('index',{

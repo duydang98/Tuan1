@@ -12,8 +12,7 @@ const createSchema = Joi.object({
 
 var router = express.Router();
 // multer
-var multer  = require('multer');
-var upload = multer({ dest: './public/uploads/' });
+var upload = require('../multer');
 //require lowdb
 var controller = require('../controller/user.controller');
 var validation = require('../validation/user.validation');
@@ -33,8 +32,8 @@ router.get('/cookie',function(req,res,next){
 router.get('/create',controller.create);
 
 router.post('/create',
-    upload.single('avatar'),
-    validation.postCreate,
+    upload.array('avatar'),
+    //validation.postCreate,
     controller.postCreate
     );
 //route params

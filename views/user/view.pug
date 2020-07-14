@@ -1,5 +1,17 @@
 extends ../layouts/common
 block content
-       h1 aaa
-       img(src="/images/logo.png")
+       h1 View User
+       if user
+              table
+                     tr
+                            td Name
+                            td= user.name
+                     tr
+                            td Phone
+                            td= user.phone
+                     tr
+                            td Avatar
+                            td
+                                   img(src="/"+ user.avatar)
+      
       
